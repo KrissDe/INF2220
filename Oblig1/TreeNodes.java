@@ -1,5 +1,8 @@
 import java.util.*;
 
+
+/** Class TreeNodes that includes information about the nodes of the binary search tree. */
+
 public class TreeNodes{
     TreeNodes leftNode, rightNode;
     String data;

@@ -1,6 +1,10 @@
 import java.io.*;
 import java.util.*;
 
+/** Obligatory assignment 1. Main-class of the programme.
+ *  @author Kristina Devochko
+ */
+
 class Main{
                      
     public static void main(String[] args){
@@ -9,17 +13,20 @@ class Main{
         
         r.readFile(tr);
         
-//         tr.printTree(); --for testing bare
+//         tr.printTree(); --for testing only
 
         tr.deleteData("busybody");
         tr.insertData("busybody");
         
-//         tr.deleteData("abactinally"); --fjerner root, for testing bare
+//         tr.deleteData("abactinally"); --fjerner root, for testing only
 
         menu(tr);
     }
     
-    //menu interface for the programme user
+    /** Method for user interface and communication with user
+     *  @param tr     dictionary data structure(binary search tree)
+     */
+     
     public static void menu(Tree tr){
         Scanner sc = new Scanner(System.in);
         char usrInput;

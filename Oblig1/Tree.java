@@ -33,7 +33,9 @@ public class Tree{
      
     public void insertData(String data){
         root = insertData(root, data);
-//         System.out.println("Item '" + data + "' is inserted");  --for testing only
+        
+//          System.out.println("Item '" + data + "' is inserted ");
+//          System.out.println(countAllNodes(root) + " items");  //--for testing only
     }
     
     
@@ -42,6 +44,7 @@ public class Tree{
      *  @param data   element that must be inserted
      *  @return       return new inserted node
      */
+     
     protected TreeNodes insertData(TreeNodes node, String data){
     
         if(node == null){
@@ -83,11 +86,12 @@ public class Tree{
 //      System.out.println("Searching");       --for testing only
 
         if(node == null){
-//          System.out.println("empty");
+//           System.out.println("empty"); --for testing only
             return false;
         }
         
         if(node.getKey().equals(data)){
+//             System.out.println("found"); --for testing only
             return true;
             
         }else if(data.compareTo(node.getKey()) < 0){
@@ -104,6 +108,7 @@ public class Tree{
     /** Method deleteData() to remove an element from the tree.
      *  @param data  element that must be deleted  
      */
+     
     public void deleteData(String data){
     
         if(isEmpty()){
@@ -116,57 +121,59 @@ public class Tree{
             root = deleteData(root, data);
             System.out.println("Item '" + data + "' is deleted\n");
         }
+//         findWord("busybody");
+//           System.out.println(countAllNodes(root) + " items"); //--for testing only
     }
     
     
+    
+    /** Method findMin() to find the smallest item in the subtree.
+     *  @param node   tree node 
+     *  @return       node with the smallest item
+     */
+     
+    protected TreeNodes findMin(TreeNodes node){
+
+        if(node == null){
+            return null;
+        
+        }else if( node.getLeft() == null){
+            return node;
+        }
+    
+        return findMin(node.getLeft());
+}
+
+
+
+
     /** Method deleteData() to remove element from the tree recursively - help-method for the one above.
      *  @param node    object of class TreeNodes that is a node of the tree being used in order to delete the element and keep the properties for the BST.
      *  @param data    element that must be deleted  
      */
-     
+
     protected TreeNodes deleteData(TreeNodes node, String data){
-        TreeNodes tr1, tr2, tr3;
-        
-        if(node.getKey().equals(data)){
-            TreeNodes lftNode, rhtNode;
-            lftNode = node.getLeft();
-            rhtNode = node.getRight();
-            
-            if(lftNode == null && rhtNode == null){
-                return null;
-                
-            }else if(lftNode == null){
-                tr1 = rhtNode;
-                return tr1;
-                
-            }else if(rhtNode == null){
-                tr1 = lftNode;
-                return tr1;
-                
-            }else{
-                tr2 = rhtNode;
-                tr1 = rhtNode;
-                
-                while(tr1.getLeft() != null){
-                    tr1 = tr1.getLeft();
-                    tr1.setLeft(lftNode);
-                    return tr2;
-                }
-                
-            }
+    
+        if( node == null ){
+            return node;   // Item not found
         }
         
         if(data.compareTo(node.getKey()) < 0){
-            tr3 = deleteData(node.getLeft(), data);
-            node.setLeft(tr3);
+            node.setLeft(deleteData(node.getLeft(), data));
+            
+        }else if(data.compareTo(node.getKey()) > 0){
+            node.setRight(deleteData(node.getRight(), data));
+            
+        }else if(node.getLeft() != null && node.getRight() != null){ // In case with two children
+            node.setKey(findMin(node.getRight()).getKey());
+            node.setRight(deleteData(node.getRight(), node.getKey()));
             
         }else{
-            tr3 = deleteData(node.getRight(), data);
-            node.setRight(tr3);
+            node = (node.getLeft() != null) ? node.getLeft() : node.getRight();
         }
         
         return node;
-    }
+}
      
      
      
@@ -189,11 +196,11 @@ public class Tree{
                 }
                 
                 insertData(words);
-                count++; //to count how many words have been inserted(for testing only)
+                count++;
             }
             
-//             System.out.println("Insertion done " + count); --for testing only
-            System.out.println();
+//            System.out.println("Insertion done " + count); //--for testing only
+//            System.out.println();
             br.close();
             
         }catch(IOException ex){
@@ -222,7 +229,10 @@ public class Tree{
         int leftNodeDepth, rightNodeDepth;
         
         if(node == null){
-            return(0);
+            return 0;
+            
+        }else if(node.getLeft() == null && node.getRight() == null){ //if it is root 
+            return 0;
             
         }else{
             leftNodeDepth = treeDepth(node.getLeft());
@@ -238,6 +248,7 @@ public class Tree{
      *  @param depth    layer of the tree
      *  @return         resulted value from the help-method as an int
      */
+     
     public int nodesPerDepth(int depth){
         return(nodesPerDepth(depth, root));
     }
@@ -252,10 +263,10 @@ public class Tree{
     private int nodesPerDepth(int depth, TreeNodes node){
     
         if(node == null){
-            return(0);
+            return 0;
             
-        }else if(depth==1){
-            return(1);
+        }else if(depth==0){
+            return 1;
             
         }else{
             return nodesPerDepth(depth-1, node.getLeft()) + nodesPerDepth(depth-1, node.getRight());
@@ -290,6 +301,7 @@ public class Tree{
     
     
     
+    
     /** Method lastWord() to find alphabetically last word of the dictionary.
      *  @return  resulted word from the help-method as a String
      */
@@ -317,25 +329,49 @@ public class Tree{
     
     
     
-    /** Method countNodes() to count total amount of nodes.
-     *  @param node   tree node
-     *  @return       total amount of nodes as an int
+    /** Method countAllNodes() to count how many nodes BST contains.
+     *  Optional method that has been used for checking if the deleteData() method is executing properly.
+     *  @param node      tree node
+     *  @param counter   an int variable that counts all the nodes in the tree
+     *  @return          total amount of nodes as an int
      */
      
-    public int countNodes(TreeNodes node){
+    public int countAllNodes(TreeNodes node){
     
         if(node == null){
             return(0);
             
-        }else if(node.getLeft() == null && node.getRight() == null){
-            return(1);
-            
         }else{
-            return countNodes(node.getLeft()) + countNodes(node.getRight());
+            int counter = 1;
+            counter += countAllNodes(node.getLeft());
+            counter += countAllNodes(node.getRight());
+            return counter;
         }
     }
    
   
+  
+  
+    /** Method countLeaves() to count the number of leaves for a node in BST.
+     *  @param node   tree node
+     *  @return       total amount of leaves as an int 
+     */
+     
+    public int countLeaves(TreeNodes node){
+    
+        if(node == null){
+            return 0;
+            
+        }else if(node.getLeft() == null && node.getRight() == null){
+            return 1;
+            
+        }else{
+            return countLeaves(node.getLeft()) + countLeaves(node.getRight());
+        }
+    }
+ 
+ 
+ 
  
     /** Method sumNodeDepth() to count internal path length. 
      *  @param node   tree node 
@@ -346,10 +382,10 @@ public class Tree{
     public int sumNodeDepth(TreeNodes node, int depth){
     
         if(node == null){
-            return(0); //tree is empty
+            return 0; //tree is empty
             
         }else if(node.getLeft() == null && node.getRight() == null){
-            return depth; //node is a leaf node
+            return depth-1; //if root
             
         }else{ //node is not a leaf node 
             return sumNodeDepth(node.getLeft(), depth+1) + sumNodeDepth(node.getRight(), depth+1);
@@ -365,7 +401,7 @@ public class Tree{
      */
      
     public double averageNodesDepth(){
-        return(((double)sumNodeDepth(root,0))/countNodes(root));
+        return(((double)sumNodeDepth(root,0))/countLeaves(root));
     }
  
  

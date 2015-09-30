@@ -1,5 +1,5 @@
-[krisde@royalduc Oblig1]$ javac *.java
-[krisde@royalduc Oblig1]$ java Main 
+kris@kris-K56CM:~/INF2220-Kristina/Oblig1$ javac *.java
+kris@kris-K56CM:~/INF2220-Kristina/Oblig1$ java Main 
 
 Item 'busybody' is deleted
 
@@ -20,9 +20,7 @@ achier
 achieve
 
 The number of lookups that gave a positive answer: 3
-Time used to generate and look for similar words: 3 milliseconds.
-
-
+Time used to generate and look for similar words: 11 milliseconds.
 command(f/q): > f
 Enter a word:
 > achiese
@@ -35,9 +33,7 @@ achiest
 achinese
 
 The number of lookups that gave a positive answer: 3
-Time used to generate and look for similar words: 1 milliseconds.
-
-
+Time used to generate and look for similar words: 8 milliseconds.
 command(f/q): > f
 Enter a word:
 > achievee
@@ -52,7 +48,7 @@ achieve
 achieve
 
 The number of lookups that gave a positive answer: 5
-Time used to generate and look for similar words: 0 milliseconds.
+Time used to generate and look for similar words: 3 milliseconds.
 command(f/q): > f
 Enter a word:
 > ahcieve
@@ -63,58 +59,56 @@ Word 'ahcieve' is not found. Possible suggestions:
 achieve
 
 The number of lookups that gave a positive answer: 1
-Time used to generate and look for similar words: 0 milliseconds.
-
-
+Time used to generate and look for similar words: 2 milliseconds.
 command(f/q): > q
+
 ----------TREE STATISTICS---------
 
-1.The depth of the tree: 37
+1.The depth of the tree: 36
 
 2.Amount nodes for each depth of the tree: 
 ---------Depth--------|--------Sum nodes--------
-	   0	      |		   0
-	   1	      |		   1
-	   2	      |		   2
-	   3	      |		   4
-	   4	      |		   8
-	   5	      |		   16
-	   6	      |		   32
-	   7	      |		   64
-	   8	      |		   121
-	   9	      |		   218
-	   10	      |		   383
-	   11	      |		   628
-	   12	      |		   990
-	   13	      |		   1513
-	   14	      |		   2208
-	   15	      |		   2948
-	   16	      |		   3890
-	   17	      |		   4772
-	   18	      |		   5671
-	   19	      |		   6253
-	   20	      |		   6679
-	   21	      |		   6687
-	   22	      |		   6439
-	   23	      |		   5883
-	   24	      |		   5097
-	   25	      |		   4241
-	   26	      |		   3257
-	   27	      |		   2395
-	   28	      |		   1790
-	   29	      |		   1182
-	   30	      |		   707
-	   31	      |		   429
-	   32	      |		   236
-	   33	      |		   138
-	   34	      |		   60
-	   35	      |		   25
-	   36	      |		   9
+	   0	      |		   1
+	   1	      |		   2
+	   2	      |		   4
+	   3	      |		   8
+	   4	      |		   16
+	   5	      |		   32
+	   6	      |		   64
+	   7	      |		   121
+	   8	      |		   218
+	   9	      |		   383
+	   10	      |		   628
+	   11	      |		   990
+	   12	      |		   1513
+	   13	      |		   2208
+	   14	      |		   2949
+	   15	      |		   3889
+	   16	      |		   4772
+	   17	      |		   5671
+	   18	      |		   6251
+	   19	      |		   6689
+	   20	      |		   6692
+	   21	      |		   6450
+	   22	      |		   5884
+	   23	      |		   5101
+	   24	      |		   4244
+	   25	      |		   3254
+	   26	      |		   2395
+	   27	      |		   1789
+	   28	      |		   1177
+	   29	      |		   705
+	   30	      |		   429
+	   31	      |		   236
+	   32	      |		   138
+	   33	      |		   60
+	   34	      |		   25
+	   35	      |		   9
 
-3.The average depth of all the nodes: 20.991763624005436
+3.The average depth of all the nodes: 19.99108677405172
 
 4.First word of the dictionary: abactinally
   Last word of the dictionary: darndests
 
 Exiting...
-[krisde@royalduc Oblig1]$ 
+kris@kris-K56CM:~/INF2220-Kristina/Oblig1$ 
